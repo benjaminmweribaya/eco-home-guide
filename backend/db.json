@@ -1,0 +1,21 @@
+{
+    "ecoTips": [
+      {
+        "id": 1,
+        "category": "Water Conservation",
+        "title": "Take shorter showers",
+        "description": "Reduce your water usage by shortening your shower by 2 minutes.",
+        "completed": false,
+        "favorite": false
+      },
+      {
+        "id": 2,
+        "category": "Waste Reduction",
+        "title": "Use reusable bags",
+        "description": "Avoid plastic bags by using reusable shopping bags.",
+        "completed": false,
+        "favorite": false
+      }
+    ]
+  }
+  
