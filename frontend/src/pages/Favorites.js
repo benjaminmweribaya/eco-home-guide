@@ -1,21 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import TipList from '../components/TipList';
+import { AppContext } from '../AppContext';
 
 function Favorites() {
-  const tips = [
-    { id: 1, text: "Use energy-efficient light bulbs", isFavorite: true, isCompleted: false },
-    { id: 2, text: "Recycle waste properly", isFavorite: false, isCompleted: false },
-    { id: 3, text: "Install water-saving fixtures", isFavorite: true, isCompleted: false },
-  ];
+    const { favorites, removeFromFavorites } = useContext(AppContext);
 
-  const favoriteTips = tips.filter((tip) => tip.isFavorite);
-
-  return (
-    <div>
-      <h1>Favorite Tips</h1>
-      <TipList tips={favoriteTips} />
-    </div>
-  );
+    return (
+        <div className="favorites-container">
+            <h1>Favorite Tips</h1>
+            <TipList tips={favorites} onFavorite={removeFromFavorites} />
+        </div>
+    );
 }
 
 export default Favorites;
