@@ -10,30 +10,34 @@ export const AppProvider = ({ children }) => {
     const [selectedCategory, setSelectedCategory] = useState('');
 
     useEffect(() => {
-        const fetchTips = async () => {
-            const response = await axios.get('/tips');
-            setTips(response.data);
+        const fetchCategoriesAndTips = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/categories');
+                const categoryData = response.data;
+
+                // Extract categories and flatten tips into a single array
+                setCategories(categoryData.map(category => category.name));
+
+                const allTips = categoryData.flatMap(category =>
+                    category.tips.map(tip => ({
+                        ...tip,
+                        category: category.name // add category name to each tip
+                    }))
+                );
+
+                setTips(allTips);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
         };
 
-        const fetchCategories = async () => {
-            const response = await axios.get('/categories');
-            setCategories(response.data);
-        };
-
-        fetchTips();
-        fetchCategories();
+        fetchCategoriesAndTips();
     }, []);
 
     const selectCategory = (category) => {
         setSelectedCategory(category);
     };
 
-    /*************  ✨ Codeium Command ⭐  *************/
-    /**
-     * Toggles the isFavorite property of the tip with the given id in the app state.
-     * @param {number} id - The id of the tip to toggle.
-     */
-    /******  fb0d03df-58aa-424d-a9b7-106b5e9681b0  *******/
     const toggleFavorite = (id) => {
         setTips((prevTips) =>
             prevTips.map((tip) =>
