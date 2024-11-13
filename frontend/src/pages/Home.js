@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AppContext } from "../AppContext";
 
-function Home() {
-  return (
-    <div>
-      <h1>Welcome to the Eco Home Guide</h1>
-      <p>Explore eco-friendly tips to make your home greener!</p>
-    </div>
-  );
+const Home = () => {
+    const { categories } = useContext(AppContext);
+
+    return (
+        <div className="home-container">
+            <h1>Welcome to the Eco Home Guide</h1>
+            <p>Explore eco-friendly practices to make your home more sustainable.</p>
+            <h3>Categories:</h3>
+            <ul>
+                {categories.map((category) => (
+                    <li key={category.id}>{category.name}</li>
+                ))}
+            </ul>
+        </div>
+    );
 }
 
 export default Home;
