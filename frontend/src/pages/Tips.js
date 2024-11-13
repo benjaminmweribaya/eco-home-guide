@@ -1,15 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import TipList from '../components/TipList';
 import SearchBar from '../components/SearchBar';
+import { AppContext } from '../AppContext';
 
 function Tips() {
+  const { tips, addToFavorites } = useContext(AppContext); // Access tips and addToFavorites from context
   const [searchTerm, setSearchTerm] = useState('');
-
-  const tips = [
-    { id: 1, text: "Use energy-efficient light bulbs", isFavorite: false, isCompleted: false },
-    { id: 2, text: "Recycle waste properly", isFavorite: false, isCompleted: false },
-    { id: 3, text: "Install water-saving fixtures", isFavorite: false, isCompleted: false },
-  ];
 
   const filteredTips = tips.filter((tip) =>
     tip.text.toLowerCase().includes(searchTerm.toLowerCase())
@@ -19,7 +15,7 @@ function Tips() {
     <div>
       <h1>Eco Tips</h1>
       <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
-      <TipList tips={filteredTips} />
+      <TipList tips={filteredTips} onFavorite={addToFavorites} />
     </div>
   );
 }
