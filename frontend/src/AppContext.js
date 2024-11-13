@@ -16,7 +16,7 @@ export const AppProvider = ({ children }) => {
                 const categoryData = response.data;
 
                 // Extract categories and flatten tips into a single array
-                setCategories(categoryData.map(category => category.name));
+                setCategories(categoryData);
 
                 const allTips = categoryData.flatMap(category =>
                     category.tips.map(tip => ({
