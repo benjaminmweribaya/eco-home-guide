@@ -3,12 +3,16 @@ import TipList from '../components/TipList';
 import { AppContext } from '../AppContext';
 
 function Favorites() {
-    const { favorites, removeFromFavorites } = useContext(AppContext);
+    const { favorites } = useContext(AppContext);
 
     return (
         <div className="favorites-container">
             <h1>Favorite Tips</h1>
-            <TipList tips={favorites} onFavorite={removeFromFavorites} />
+            {favorites.length > 0 ? (
+                <TipList tips={favorites} />
+            ) : (
+                <p>No favorite tips yet.</p>
+            )}
         </div>
     );
 }
