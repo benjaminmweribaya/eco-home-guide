@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import TipList from '../components/TipList';
 import SearchBar from '../components/SearchBar';
+import CategoryFilter from '../components/CategoryFilter';
 import { AppContext } from '../AppContext';
 
 function Tips() {
@@ -14,6 +15,7 @@ function Tips() {
   return (
     <div>
       <h1>Eco Tips</h1>
+      <CategoryFilter />
       <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
       <TipList tips={filteredTips} onFavorite={addToFavorites} />
     </div>
