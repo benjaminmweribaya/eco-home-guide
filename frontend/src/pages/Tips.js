@@ -13,8 +13,8 @@ function Tips() {
   );
 
   return (
-    <div>
-      <h1>Eco Tips</h1>
+    <div className="text-center py-6 max-w-screen-md mx-auto">
+      <h1 className="text-2xl font-bold text-green-700 mb-4">Eco Tips</h1>
       <CategoryFilter />
       <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
       <TipList tips={filteredTips} onFavorite={addToFavorites} onToggleCompleted={toggleCompleted} />

@@ -11,24 +11,29 @@ import Signup from './Auth/Signup';
 function App() {
   const { user } = useContext(AppContext);
   console.log('Current user:', user);
-  
+
   return (
     <Router>
-      <div className="App">
-        <NavBar />
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/" element={<Home />} />
-          <Route
-            path="/tips"
-            element={user ? <Tips /> : <Navigate to="/login" />}
-          />
-          <Route
-            path="/favorites"
-            element={user ? <Favorites /> : <Navigate to="/login" />}
-          />
-        </Routes>
+      <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
+        <header className="shadow-md bg-white">
+          <NavBar />
+        </header>
+
+        <main className="flex-grow container mx-auto px-4 py-6">
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/" element={<Home />} />
+            <Route
+              path="/tips"
+              element={user ? <Tips /> : <Navigate to="/login" />}
+            />
+            <Route
+              path="/favorites"
+              element={user ? <Favorites /> : <Navigate to="/login" />}
+            />
+          </Routes>
+        </main>
       </div>
     </Router>
   );
