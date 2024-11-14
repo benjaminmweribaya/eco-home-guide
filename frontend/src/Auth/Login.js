@@ -3,7 +3,7 @@ import { AppContext } from '../AppContext';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
-    const { handleLogin } = useContext(AppContext);
+    const { handleLogin, user } = useContext(AppContext);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();

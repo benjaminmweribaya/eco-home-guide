@@ -4,34 +4,33 @@ import NavBar from './components/NavBar';
 import Home from './pages/Home';
 import Tips from './pages/Tips';
 import Favorites from './pages/Favorites';
-import { AppProvider } from "./AppContext";
+import { AppContext } from "./AppContext";
 import Login from './Auth/Login';
 import Signup from './Auth/Signup';
 
 function App() {
   const { user } = useContext(AppContext);
-
+  console.log('Current user:', user);
+  
   return (
-    <AppProvider>
-      <Router>
-        <div className="App">
-          <NavBar />
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/" element={<Home />} />
-            <Route
-              path="/tips"
-              element={user ? <Tips /> : <Navigate to="/login" />}
-            />
-            <Route
-              path="/favorites"
-              element={user ? <Favorites /> : <Navigate to="/login" />}
-            />
-          </Routes>
-        </div>
-      </Router>
-    </AppProvider>
+    <Router>
+      <div className="App">
+        <NavBar />
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/tips"
+            element={user ? <Tips /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/favorites"
+            element={user ? <Favorites /> : <Navigate to="/login" />}
+          />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
