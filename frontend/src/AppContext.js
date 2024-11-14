@@ -51,6 +51,14 @@ export const AppProvider = ({ children }) => {
         ? tips.filter(tip => tip.category === selectedCategory)
         : tips;
 
+    const toggleCompleted = (id) => {
+        setTips((prevTips) =>
+            prevTips.map((tip) =>
+                tip.id === id ? { ...tip, isCompleted: !tip.isCompleted } : tip
+            )
+        );
+    };
+
     return (
         <AppContext.Provider
             value={{
@@ -59,6 +67,7 @@ export const AppProvider = ({ children }) => {
                 categories,
                 selectedCategory,
                 toggleFavorite,
+                toggleCompleted,
                 selectCategory,
             }}
         >

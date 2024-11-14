@@ -5,7 +5,7 @@ import CategoryFilter from '../components/CategoryFilter';
 import { AppContext } from '../AppContext';
 
 function Tips() {
-  const { tips, addToFavorites } = useContext(AppContext); // Access tips and addToFavorites from context
+  const { tips, addToFavorites, toggleCompleted } = useContext(AppContext); // Access tips and addToFavorites from context
   const [searchTerm, setSearchTerm] = useState('');
 
   const filteredTips = tips.filter((tip) =>
@@ -17,7 +17,7 @@ function Tips() {
       <h1>Eco Tips</h1>
       <CategoryFilter />
       <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
-      <TipList tips={filteredTips} onFavorite={addToFavorites} />
+      <TipList tips={filteredTips} onFavorite={addToFavorites} onToggleCompleted={toggleCompleted} />
     </div>
   );
 }

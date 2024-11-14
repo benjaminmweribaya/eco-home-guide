@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { AppContext } from '../AppContext';
 
 function TipList({ tips }) {
-    const { toggleFavorite } = useContext(AppContext);
+    const { toggleFavorite, toggleCompleted } = useContext(AppContext);
 
     return (
         <div className="tip-list">
@@ -12,6 +12,10 @@ function TipList({ tips }) {
                     <button onClick={() => toggleFavorite(tip.id)}>
                         {tip.isFavorite ? 'Unfavorite' : 'Favorite'}
                     </button>
+                    <button onClick={() => toggleCompleted(tip.id)}>
+                        {tip.isCompleted ? 'Undo Completed' : 'Mark as Completed'}
+                    </button>
+                    {tip.isCompleted && <span>✅ Completed</span>}
                 </div>
             ))}
         </div>
