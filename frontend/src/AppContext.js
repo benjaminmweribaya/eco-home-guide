@@ -11,6 +11,25 @@ export const AppProvider = ({ children }) => {
     const [completedTips, setCompletedTips] = useState([]);
     const [user, setUser] = useState(null); // new state for user authentication
 
+    // Automatically attach token to axios requests if logged in
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+            fetchUser(); // Load user data on app start if token exists
+        }
+    }, []);
+
+    const fetchUser = async () => {
+        try {
+            const response = await axios.get("http://localhost:5000/protected-route");
+            setUser(response.data.user);
+        } catch (error) {
+            console.error("Session verification failed", error);
+            handleLogout(); // If token invalid, log out
+        }
+    };
+
     useEffect(() => {
         const fetchCategoriesAndTips = async () => {
             try {
@@ -67,6 +86,7 @@ export const AppProvider = ({ children }) => {
             const response = await axios.post("http://localhost:5000/login", { username, password });
             setUser(response.data.user);
             localStorage.setItem("token", response.data.token); // Store token for session persistence
+            axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`; // Set token in axios
         } catch (error) {
             console.error("Login failed", error);
         }
@@ -78,6 +98,7 @@ export const AppProvider = ({ children }) => {
             const response = await axios.post("http://localhost:5000/signup", { username, password });
             setUser(response.data.user);
             localStorage.setItem("token", response.data.token);
+            axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`;
         } catch (error) {
             console.error("Signup failed", error);
         }
