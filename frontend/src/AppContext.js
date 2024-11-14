@@ -8,6 +8,8 @@ export const AppProvider = ({ children }) => {
     const [categories, setCategories] = useState([]);
     const [favorites, setFavorites] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('');
+    const [completedTips, setCompletedTips] = useState([]);
+    const [user, setUser] = useState(null); // new state for user authentication
 
     useEffect(() => {
         const fetchCategoriesAndTips = async () => {
@@ -59,6 +61,33 @@ export const AppProvider = ({ children }) => {
         );
     };
 
+    // Login function
+    const handleLogin = async (username, password) => {
+        try {
+            const response = await axios.post("http://localhost:5000/login", { username, password });
+            setUser(response.data.user);
+            localStorage.setItem("token", response.data.token); // Store token for session persistence
+        } catch (error) {
+            console.error("Login failed", error);
+        }
+    };
+
+    // Signup function
+    const handleSignup = async (username, password) => {
+        try {
+            const response = await axios.post("http://localhost:5000/signup", { username, password });
+            setUser(response.data.user);
+            localStorage.setItem("token", response.data.token);
+        } catch (error) {
+            console.error("Signup failed", error);
+        }
+    };
+
+    const handleLogout = () => {
+        setUser(null);
+        localStorage.removeItem("token"); // Clear token from localStorage
+    };
+
     return (
         <AppContext.Provider
             value={{
@@ -69,6 +98,10 @@ export const AppProvider = ({ children }) => {
                 toggleFavorite,
                 toggleCompleted,
                 selectCategory,
+                user,
+                handleLogin,
+                handleSignup,
+                handleLogout,
             }}
         >
             {children}
