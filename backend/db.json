@@ -1,21 +1,284 @@
 {
-    "ecoTips": [
-      {
-        "id": 1,
-        "category": "Water Conservation",
-        "title": "Take shorter showers",
-        "description": "Reduce your water usage by shortening your shower by 2 minutes.",
-        "completed": false,
-        "favorite": false
-      },
-      {
-        "id": 2,
-        "category": "Waste Reduction",
-        "title": "Use reusable bags",
-        "description": "Avoid plastic bags by using reusable shopping bags.",
-        "completed": false,
-        "favorite": false
-      }
-    ]
-  }
-  
+	"categories": [
+		{
+			"name": "Energy Efficiency",
+			"tips": [
+				{
+					"id": 1,
+					"text": "Switch to LED bulbs for longer-lasting, energy-efficient lighting.",
+					"completed": false,
+					"favorite": false
+				},
+				{
+					"id": 2,
+					"text": "Unplug electronics when not in use to reduce phantom power consumption.",
+					"completed": false,
+					"favorite": false
+				},
+				{
+					"id": 3,
+					"text": "Lower your thermostat in winter and raise it in summer to save energy.",
+					"completed": false,
+					"favorite": false
+				},
+				{
+					"id": 4,
+					"text": "Seal air leaks around windows and doors to improve insulation.",
+					"completed": false,
+					"favorite": false
+				},
+				{
+					"id": 5,
+					"text": "Use energy-efficient appliances with the ENERGY STAR label.",
+					"completed": false,
+					"favorite": false
+				}
+			]
+		},
+		{
+			"name": "Water Conservation",
+			"tips": [
+				{
+					"id": 6,
+					"text": "Install a rainwater harvesting system to water your plants.",
+					"completed": false,
+					"favorite": false
+				},
+				{
+					"id": 7,
+					"text": "Fix leaky faucets and pipes promptly to prevent water waste.",
+					"completed": false,
+					"favorite": false
+				},
+				{
+					"id": 8,
+					"text": "Take shorter showers to conserve water.",
+					"completed": false,
+					"favorite": false
+				},
+				{
+					"id": 9,
+					"text": "Collect rainwater in a bucket to water plants.",
+					"completed": false,
+					"favorite": false
+				},
+				{
+					"id": 10,
+					"text": "Use a broom instead of a hose to clean outdoor areas.",
+					"completed": false,
+					"favorite": false
+				}
+			]
+		},
+		{
+			"name": "Waste Reduction",
+			"tips": [
+				{
+					"id": 11,
+					"text": "Try composting your food waste to reduce landfill contributions.",
+					"completed": false,
+					"favorite": false
+				},
+				{
+					"id": 12,
+					"text": "Reduce, reuse, and recycle to minimize waste.",
+					"completed": false,
+					"favorite": false
+				},
+				{
+					"id": 13,
+					"text": "Choose reusable products over disposable ones.",
+					"completed": false,
+					"favorite": false
+				},
+				{
+					"id": 14,
+					"text": "Buy products with minimal packaging to reduce plastic waste.",
+					"completed": false,
+					"favorite": false
+				},
+				{
+					"id": 15,
+					"text": "Donate or sell unwanted items instead of throwing them away.",
+					"completed": false,
+					"favorite": false
+				}
+			]
+		},
+		{
+			"name": "Green Cleaning",
+			"tips": [
+				{
+					"id": 16,
+					"text": "Use white vinegar as an all-purpose cleaner for a non-toxic option.",
+					"completed": false,
+					"favorite": false
+				},
+				{
+					"id": 17,
+					"text": "Make your own cleaning solutions using natural ingredients like baking soda and lemon juice.",
+					"completed": false,
+					"favorite": false
+				},
+				{
+					"id": 18,
+					"text": "Use microfiber cloths to reduce the need for harsh chemicals.",
+					"completed": false,
+					"favorite": false
+				},
+				{
+					"id": 19,
+					"text": "Air dry clothes instead of using a dryer to save energy.",
+					"completed": false,
+					"favorite": false
+				},
+				{
+					"id": 20,
+					"text": "Clean your washing machine regularly to improve its efficiency.",
+					"completed": false,
+					"favorite": false
+				}
+			]
+		},
+		{
+			"name": "Sustainable Food",
+			"tips": [
+				{
+					"id": 21,
+					"text": "Buy local and seasonal produce to reduce the carbon footprint of your food.",
+					"completed": false,
+					"favorite": false
+				},
+				{
+					"id": 22,
+					"text": "Cook larger meals and store leftovers to reduce food waste.",
+					"completed": false,
+					"favorite": false
+				},
+				{
+					"id": 23,
+					"text": "Choose organic and sustainably-sourced foods whenever possible.",
+					"completed": false,
+					"favorite": false
+				},
+				{
+					"id": 24,
+					"text": "Reduce meat consumption and opt for plant-based protein sources.",
+					"completed": false,
+					"favorite": false
+				},
+				{
+					"id": 25,
+					"text": "Grow your own herbs and vegetables to reduce reliance on store-bought produce.",
+					"completed": false,
+					"favorite": false
+				}
+			]
+		},
+		{
+			"name": "Transportation",
+			"tips": [
+				{
+					"id": 26,
+					"text": "Walk or cycle for short trips instead of using a car.",
+					"completed": false,
+					"favorite": false
+				},
+				{
+					"id": 27,
+					"text": "Carpool with colleagues or friends to reduce emissions.",
+					"completed": false,
+					"favorite": false
+				},
+				{
+					"id": 28,
+					"text": "Use public transportation or ride-sharing services when possible.",
+					"completed": false,
+					"favorite": false
+				},
+				{
+					"id": 29,
+					"text": "Consider electric or hybrid vehicles for your next car purchase.",
+					"completed": false,
+					"favorite": false
+				},
+				{
+					"id": 30,
+					"text": "Plan your trips efficiently to minimize driving time and fuel consumption.",
+					"completed": false,
+					"favorite": false
+				}
+			]
+		},
+		{
+			"name": "Gardening & Plant Care",
+			"tips": [
+				{
+					"id": 31,
+					"text": "Plant native species that require less water and care.",
+					"completed": false,
+					"favorite": false
+				},
+				{
+					"id": 32,
+					"text": "Use organic fertilizers and pesticides to protect the environment.",
+					"completed": false,
+					"favorite": false
+				},
+				{
+					"id": 33,
+					"text": "Mulch your garden to retain moisture and suppress weeds.",
+					"completed": false,
+					"favorite": false
+				},
+				{
+					"id": 34,
+					"text": "Collect rainwater to water your plants.",
+					"completed": false,
+					"favorite": false
+				},
+				{
+					"id": 35,
+					"text": "Create a wildlife-friendly garden by planting flowers and shrubs that attract pollinators.",
+					"completed": false,
+					"favorite": false
+				}
+			]
+		},
+		{
+			"name": "Eco-friendly Shopping",
+			"tips": [
+				{
+					"id": 36,
+					"text": "Purchase products with minimal packaging to reduce plastic waste.",
+					"completed": false,
+					"favorite": false
+				},
+				{
+					"id": 37,
+					"text": "Buy secondhand items to reduce consumption and waste.",
+					"completed": false,
+					"favorite": false
+				},
+				{
+					"id": 38,
+					"text": "Support ethical and sustainable brands.",
+					"completed": false,
+					"favorite": false
+				},
+				{
+					"id": 39,
+					"text": "Choose products made from recycled or sustainable materials.",
+					"completed": false,
+					"favorite": false
+				},
+				{
+					"id": 40,
+					"text": "Avoid impulse purchases and only buy what you need.",
+					"completed": false,
+					"favorite": false
+				}
+			]
+		}
+	]
+}
