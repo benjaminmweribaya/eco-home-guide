@@ -22,7 +22,7 @@ export const AppProvider = ({ children }) => {
 
     const fetchUser = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/protected-route");
+            const response = await axios.get("https://eco-home-guide-app-backend.onrender.com/protected-route");
             setUser(response.data.user);
         } catch (error) {
             console.error("Session verification failed", error);
@@ -33,7 +33,7 @@ export const AppProvider = ({ children }) => {
     useEffect(() => {
         const fetchCategoriesAndTips = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/categories');
+                const response = await axios.get('https://eco-home-guide-app-backend.onrender.com/categories');
                 const categoryData = response.data;
 
                 // Extract categories and flatten tips into a single array
@@ -83,7 +83,7 @@ export const AppProvider = ({ children }) => {
     // Login function
     const handleLogin = async (username, password) => {
         try {
-            const response = await axios.post("http://localhost:5000/login", { username, password });
+            const response = await axios.post("https://eco-home-guide-app-backend.onrender.com/login", { username, password });
             setUser(response.data.user);
             localStorage.setItem("token", response.data.token); // Store token for session persistence
             axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`; // Set token in axios
@@ -95,7 +95,7 @@ export const AppProvider = ({ children }) => {
     // Signup function
     const handleSignup = async (username, password) => {
         try {
-            const response = await axios.post("http://localhost:5000/signup", { username, password });
+            const response = await axios.post("https://eco-home-guide-app-backend.onrender.com/signup", { username, password });
             setUser(response.data.user);
             localStorage.setItem("token", response.data.token);
             axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`;
