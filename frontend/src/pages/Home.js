@@ -10,8 +10,8 @@ const Home = () => {
             <p className="text-gray-700 mb-6">Explore eco-friendly practices to make your home more sustainable.</p>
             <h3 className="text-xl font-semibold text-green-600 mb-2">Categories:</h3>
             <ul className="list-disc list-inside text-gray-800">
-                {categories.map((category) => (
-                    <li key={category.id}>{category.name}</li>
+                {categories.map((category, index) => (
+                    <li key={category.id}>{index + 1}. {category.name}</li>
                 ))}
             </ul>
         </div>

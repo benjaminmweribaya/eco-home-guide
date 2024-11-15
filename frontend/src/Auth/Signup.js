@@ -8,9 +8,10 @@ function Signup() {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
-        handleSignup(username, password);
+        console.log("Signup form submitted");
+        await handleSignup(username, password);
     };
 
     useEffect(() => {

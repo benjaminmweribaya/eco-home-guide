@@ -96,6 +96,7 @@ export const AppProvider = ({ children }) => {
     const handleSignup = async (username, password) => {
         try {
             const response = await axios.post("https://eco-home-guide-app-backend.onrender.com/signup", { username, password });
+            console.log("Signup response:", response.data);
             setUser(response.data.user);
             localStorage.setItem("token", response.data.token);
             axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`;
