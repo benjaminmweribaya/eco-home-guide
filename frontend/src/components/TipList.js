@@ -5,11 +5,11 @@ function TipList({ tips }) {
     const { addToFavorites, toggleCompleted } = useContext(AppContext);
 
     return (
-        <div className="tip-list grid gap-4 p-4 w-full max-w-screen-md">
+        <div className="tip-list grid gap-4 p-4 w-full max-w-screen-md mx-auto">
             {tips.map((tip) => (
                 <div
                     key={tip.id}
-                    className="tip-item bg-blue-50 border border-blue-200 rounded-lg p-4 shadow-md"
+                    className="tip-item bg-blue-50 border border-blue-200 rounded-lg p-4 shadow-md w-full"
                 >
                     <p className="text-lg font-semibold text-gray-800 mb-2">{tip.text}</p>
                     <div className="flex items-center space-x-4">

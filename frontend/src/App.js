@@ -7,7 +7,7 @@ import Favorites from './pages/Favorites';
 import { AppContext } from "./AppContext";
 import Login from './Auth/Login';
 import Signup from './Auth/Signup';
-import AuthModal from "./components/AuthModal";
+import AuthModal from './components/AuthModal';
 
 function App() {
   const { user } = useContext(AppContext);
