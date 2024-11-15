@@ -7,10 +7,21 @@ import Favorites from './pages/Favorites';
 import { AppContext } from "./AppContext";
 import Login from './Auth/Login';
 import Signup from './Auth/Signup';
+import AuthModal from "./components/AuthModal";
 
 function App() {
   const { user } = useContext(AppContext);
   console.log('Current user:', user);
+  
+  const { openAuthModal } = useContext(AppContext);
+
+  const ProtectedRoute = ({ children }) => {
+    if (!user) {
+      openAuthModal();
+      return <Navigate to="/login" />;
+    }
+    return children;
+  };
 
   return (
     <Router>
@@ -24,10 +35,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/" element={<Home />} />
-            <Route
-              path="/tips"
-              element={user ? <Tips /> : <Navigate to="/login" />}
-            />
+            <Route path="/tips" element={<Tips />} />
             <Route
               path="/favorites"
               element={user ? <Favorites /> : <Navigate to="/login" />}

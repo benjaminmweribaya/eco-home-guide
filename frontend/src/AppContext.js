@@ -1,32 +1,17 @@
-import React, { createContext, useState, useEffect, useCallback } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
     const [tips, setTips] = useState([]);
+    const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('');
     const [user, setUser] = useState(null); // new state for user authentication
 
-    const fetchUser = useCallback(async () => {
-        try {
-            const response = await axios.get("https://eco-home-guide-app-backend.onrender.com/protected-route");
-            setUser(response.data.user);
-        } catch (error) {
-            console.error("Session verification failed", error);
-            handleLogout(); // If token invalid, log out
-        }
-    }, []);
-
-    // Automatically attach token to axios requests if logged in
-    useEffect(() => {
-        const token = localStorage.getItem("token");
-        if (token) {
-            axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-            fetchUser(); // Load user data on app start if token exists
-        }
-    }, [fetchUser]);
+    const openAuthModal = () => setIsAuthModalOpen(true);
+    const closeAuthModal = () => setIsAuthModalOpen(false);
 
     useEffect(() => {
         const fetchCategoriesAndTips = async () => {
@@ -57,12 +42,24 @@ export const AppProvider = ({ children }) => {
         setSelectedCategory(category);
     };
 
-    const toggleFavorite = (id) => {
-        setTips((prevTips) =>
-            prevTips.map((tip) =>
-                tip.id === id ? { ...tip, isFavorite: !tip.isFavorite } : tip
-            )
-        );
+    const addToFavorites = async (tipId) => {
+        if (!user) {
+            alert('You need to log in or sign up to add to favorites.');
+            return;
+        }
+
+        // Proceed with favorite logic if logged in
+        try {
+            const updatedTips = tips.map((tip) =>
+                tip.id === tipId ? { ...tip, isFavorite: !tip.isFavorite } : tip
+            );
+            setTips(updatedTips);
+
+            // Optionally, update backend
+            await axios.patch(`https://eco-home-guide-app-backend.onrender.com/tips/${tipId}`, { isFavorite: !tips.find(t => t.id === tipId).isFavorite });
+        } catch (error) {
+            console.error('Error adding to favorites:', error);
+        }
     };
 
     // Filtered tips based on selected category
@@ -70,18 +67,25 @@ export const AppProvider = ({ children }) => {
         ? tips.filter(tip => tip.category === selectedCategory)
         : tips;
 
-    const toggleCompleted = (id) => {
-        setTips((prevTips) =>
-            prevTips.map((tip) =>
-                tip.id === id ? { ...tip, isCompleted: !tip.isCompleted } : tip
-            )
+    const toggleCompleted = async (tipId) => {
+        const updatedTips = tips.map((tip) =>
+            tip.id === tipId ? { ...tip, isCompleted: !tip.isCompleted } : tip
         );
+        setTips(updatedTips);
+
+        // Optionally, update backend
+        await axios.patch(`/api/tips/${tipId}`, { isCompleted: !tips.find(t => t.id === tipId).isCompleted });
     };
 
     // Login function
     const handleLogin = async (username, password) => {
         try {
-            const response = await axios.post("https://eco-home-guide-app-backend.onrender.com/login", { username, password });
+            const response = await fetch("https://eco-home-guide-app-backend.onrender.com/login", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password }),
+            });
+            console.log("Login response:", response.data);
             setUser(response.data.user);
             localStorage.setItem("token", response.data.token); // Store token for session persistence
             axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`; // Set token in axios
@@ -93,13 +97,18 @@ export const AppProvider = ({ children }) => {
     // Signup function
     const handleSignup = async (username, password) => {
         try {
-            const response = await axios.post("https://eco-home-guide-app-backend.onrender.com/signup", { username, password });
+            const response = await fetch("https://eco-home-guide-app-backend.onrender.com/signup", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password }),
+            });
             console.log("Signup response:", response.data);
             setUser(response.data.user);
             localStorage.setItem("token", response.data.token);
             axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`;
         } catch (error) {
-            console.error("Signup failed", error);
+            console.error(error);
+            alert("Signup failed");
         }
     };
 
@@ -115,13 +124,16 @@ export const AppProvider = ({ children }) => {
                 favorites: tips.filter((tip) => tip.isFavorite),
                 categories,
                 selectedCategory,
-                toggleFavorite,
+                addToFavorites,
                 toggleCompleted,
                 selectCategory,
                 user,
                 handleLogin,
                 handleSignup,
                 handleLogout,
+                isAuthModalOpen,
+                openAuthModal,
+                closeAuthModal,
             }}
         >
             {children}

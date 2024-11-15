@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { AppContext } from '../AppContext';
 
 function TipList({ tips }) {
-    const { toggleFavorite, toggleCompleted } = useContext(AppContext);
+    const { addToFavorites, toggleCompleted } = useContext(AppContext);
 
     return (
         <div className="tip-list grid gap-4 p-4">
@@ -14,7 +14,7 @@ function TipList({ tips }) {
                     <p className="text-lg font-semibold text-gray-800 mb-2">{tip.text}</p>
                     <div className="flex items-center space-x-4">
                         <button
-                            onClick={() => toggleFavorite(tip.id)}
+                            onClick={() => addToFavorites(tip.id)}
                             className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded"
                         >
                             {tip.isFavorite ? 'Unfavorite' : 'Favorite'}
