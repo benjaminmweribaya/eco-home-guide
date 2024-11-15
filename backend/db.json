@@ -280,5 +280,22 @@
 				}
 			]
 		}
+	],
+
+	"users": [
+		{
+			"id": 1,
+			"username": "testuser",
+			"password": "$2b$10$abcdefghijklmnopqrstuv",
+			"favorites": [1, 6, 12],
+			"completedTips": [2, 8]
+		},
+		{
+			"id": 2,
+			"username": "johndoe",
+			"password": "$2b$10$wxyz1234567890abcdefg",
+			"favorites": [],
+			"completedTips": []
+		}
 	]
 }
