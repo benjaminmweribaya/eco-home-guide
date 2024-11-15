@@ -10,10 +10,8 @@ import Signup from './Auth/Signup';
 import AuthModal from './components/AuthModal';
 
 function App() {
-  const { user } = useContext(AppContext);
+  const { user, openAuthModal } = useContext(AppContext);
   console.log('Current user:', user);
-  
-  const { openAuthModal } = useContext(AppContext);
 
   const ProtectedRoute = ({ children }) => {
     if (!user) {
@@ -26,6 +24,7 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center w-full">
+        <AuthModal />
         <header className="shadow-md bg-white mt-6 rounded-lg mx-auto w-full max-w-screen-md">
           <NavBar />
         </header>
@@ -38,7 +37,11 @@ function App() {
             <Route path="/tips" element={<Tips />} />
             <Route
               path="/favorites"
-              element={user ? <Favorites /> : <Navigate to="/login" />}
+              element={
+                <ProtectedRoute>
+                  <Favorites />
+                </ProtectedRoute>
+              }
             />
           </Routes>
         </main>
