@@ -13,7 +13,7 @@ function Tips() {
   );
 
   return (
-    <div className="text-center py-6 max-w-screen-md mx-auto">
+    <div className="text-center py-6 w-full max-w-screen-md mx-auto">
       <h1 className="text-2xl font-bold text-green-700 mb-4">Eco Tips</h1>
       <CategoryFilter />
       <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />

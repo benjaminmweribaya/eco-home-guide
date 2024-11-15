@@ -5,7 +5,7 @@ function TipList({ tips }) {
     const { addToFavorites, toggleCompleted } = useContext(AppContext);
 
     return (
-        <div className="tip-list grid gap-4 p-4 w-full max-w-screen-md mx-auto">
+        <div className="tip-list grid gap-4 p-4 w-full max-w-screen-md">
             {tips.map((tip) => (
                 <div
                     key={tip.id}
