@@ -17,6 +17,9 @@ app.use(bodyParser.json());
 const SECRET_KEY = process.env.JWT_SECRET || 'default_secret_key';
 const TOKEN_EXPIRATION = '1h';  // Token valid for 1 hour
 
+// Use a deployed database URL
+const DATABASE_URL = process.env.DATABASE_URL || 'http://localhost:5001';
+
 // Middleware to verify JWT token
 function authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization'];
@@ -37,7 +40,7 @@ app.post('/signup', async (req, res) => {
 
     try {
         // Check if user already exists
-        const existingUser = await axios.get(`http://localhost:5001/users?username=${username}`);
+        const existingUser = await axios.get(`${DATABASE_URL}/users?username=${username}`);
         if (existingUser.data.length > 0) {
             return res.status(400).json({ error: 'User already exists' });
         }
@@ -47,7 +50,7 @@ app.post('/signup', async (req, res) => {
         const newUser = { username, password: hashedPassword };
 
         // Save new user to database
-        await axios.post('http://localhost:5001/users', newUser);
+        await axios.post(`${DATABASE_URL}/users`, newUser);
 
         // Generate JWT token
         const token = jwt.sign({ username: newUser.username }, SECRET_KEY, { expiresIn: TOKEN_EXPIRATION });
@@ -64,7 +67,7 @@ app.post('/login', async (req, res) => {
 
     try {
         // Find user by username
-        const response = await axios.get(`http://localhost:5001/users?username=${username}`);
+        const response = await axios.get(`${DATABASE_URL}/users?username=${username}`);
         const user = response.data[0];
         if (!user) {
             return res.status(400).json({ error: 'Invalid credentials' });
