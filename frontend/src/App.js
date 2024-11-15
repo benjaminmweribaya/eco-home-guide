@@ -25,8 +25,8 @@ function App() {
 
   return (
     <Router>
-      <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
-        <header className="shadow-md bg-white mt-6 rounded-lg mx-auto">
+      <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center w-full">
+        <header className="shadow-md bg-white mt-6 rounded-lg mx-auto w-full max-w-screen-md">
           <NavBar />
         </header>
 
