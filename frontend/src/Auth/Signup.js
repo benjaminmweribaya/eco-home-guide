@@ -47,10 +47,10 @@ function Signup() {
                 >
                     Sign Up
                 </button>
+                <p className="text-center text-gray-600 mt-4">
+                    Already have an account? <Link to="/login" className="text-green-500 hover:underline">Log in here</Link>.
+                </p>
             </form>
-            <p className="text-center text-gray-600 mt-4">
-                Already have an account? <Link to="/login" className="text-green-500 hover:underline">Log in here</Link>.
-            </p>
         </div>
     );
 }

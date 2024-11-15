@@ -46,10 +46,10 @@ function Login() {
                 >
                     Login
                 </button>
+                <p className="text-center text-gray-600 mt-4" >
+                    Don’t have an account? <Link to="/signup" className="text-green-500 hover:underline">Sign up here</Link>.
+                </p>
             </form>
-            <p className="text-center text-gray-600 mt-4" >
-                Don’t have an account? <Link to="/signup" className="text-green-500 hover:underline">Sign up here</Link>.
-            </p>
         </div>
     );
 }
