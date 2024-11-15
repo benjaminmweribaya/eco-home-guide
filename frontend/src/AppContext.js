@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
 export const AppContext = createContext();
@@ -6,10 +6,18 @@ export const AppContext = createContext();
 export const AppProvider = ({ children }) => {
     const [tips, setTips] = useState([]);
     const [categories, setCategories] = useState([]);
-    const [favorites, setFavorites] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('');
-    const [completedTips, setCompletedTips] = useState([]);
     const [user, setUser] = useState(null); // new state for user authentication
+
+    const fetchUser = useCallback(async () => {
+        try {
+            const response = await axios.get("https://eco-home-guide-app-backend.onrender.com/protected-route");
+            setUser(response.data.user);
+        } catch (error) {
+            console.error("Session verification failed", error);
+            handleLogout(); // If token invalid, log out
+        }
+    }, []);
 
     // Automatically attach token to axios requests if logged in
     useEffect(() => {
@@ -18,17 +26,7 @@ export const AppProvider = ({ children }) => {
             axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
             fetchUser(); // Load user data on app start if token exists
         }
-    }, []);
-
-    const fetchUser = async () => {
-        try {
-            const response = await axios.get("https://eco-home-guide-app-backend.onrender.com/protected-route");
-            setUser(response.data.user);
-        } catch (error) {
-            console.error("Session verification failed", error);
-            handleLogout(); // If token invalid, log out
-        }
-    };
+    }, [fetchUser]);
 
     useEffect(() => {
         const fetchCategoriesAndTips = async () => {
