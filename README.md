@@ -47,7 +47,7 @@ Eco Home Guide is a web application dedicated to helping users incorporate eco-f
 
 ## Live Demo
 
-- **Frontend**: [Eco Home Guide on Vercel](https://eco-home-guide-app.vercel.app/)
+- **Frontend**: [Eco Home Guide on Vercel](https://eco-home-guide.vercel.app)
 - **Backend**: [Eco Home Guide API on Render](https://eco-home-guide-app-backend.onrender.com/)
 
 ---
@@ -57,7 +57,7 @@ Eco Home Guide is a web application dedicated to helping users incorporate eco-f
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/yourusername/eco-home-guide.git
+   git clone git@github.com:benjaminmweribaya/eco-home-guide.git
    cd eco-home-guide
    ```
 
