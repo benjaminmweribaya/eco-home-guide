@@ -9,14 +9,14 @@ function Header() {
 
     return (
         <header className="bg-green-700 text-white shadow-md w-full">
-            <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div className="max-w-7xl mx-auto px-8 py-6 flex justify-between items-center">
                 {/* Logo */}
                 <Link to="/" className="text-2xl font-bold tracking-wide">
                     Eco Home Guide
                 </Link>
 
                 {/* Desktop Nav */}
-                <nav className="hidden md:flex space-x-6 items-center">
+                <nav className="hidden md:flex space-x-8 items-center">
                     <Link to="/" className="hover:text-green-200 transition">Home</Link>
                     <Link to="/tips" className="hover:text-green-200 transition">Tips</Link>
                     <Link to="/favorites" className="hover:text-green-200 transition">Favorites</Link>
@@ -50,7 +50,7 @@ function Header() {
 
             {/* Mobile Menu */}
             {isOpen && (
-                <div className="md:hidden px-4 pb-4 space-y-2">
+                <div className="md:hidden px-8 pb-4 space-y-2">
                     <Link to="/" onClick={() => setIsOpen(false)} className="block hover:text-green-200">Home</Link>
                     <Link to="/tips" onClick={() => setIsOpen(false)} className="block hover:text-green-200">Tips</Link>
                     <Link to="/favorites" onClick={() => setIsOpen(false)} className="block hover:text-green-200">Favorites</Link>
